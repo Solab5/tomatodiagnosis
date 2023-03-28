@@ -87,12 +87,11 @@ def train(config):
     metrics=[accuracy, error_rate]
     learn = vision_learner(dls, arch=getattr(tvmodels, config.arch), pretrained=config.pretrained, metrics=metrics)
 
-    callbacks = [
-        SaveModelCallback(monitor='valid_loss'),
-        WandbCallback(log_preds=True, log_model=False)
-    ]
+    cbs = [WandbCallback(log_preds=True, log_model=True), 
+           SaveModelCallback(monitor='valid_loss')]
+    cbs += ([MixedPrecision()] if config.mixed_precision else [])
 
-    learn.fine_tune(config.epochs, config.lr, cbs=callbacks)
+    learn.fine_tune(config.epochs, config.lr, cbs=cbs)
     
     log_metrics(learn)
 
