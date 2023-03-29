@@ -21,7 +21,9 @@ The model gives predictions in form of accuracy
 
 ## Conclusion
 In conclusion, this project demonstrates the potential of computer vision techniques in diagnosing tomato diseases. The model achieved high accuracy and can be used to diagnose tomato diseases in real-world scenarios.
-
+ 
+## Note:
+Only sessions01, 02 and 03 were used for the project. Other repos init and training were used while testing some issues.
 
 
 
